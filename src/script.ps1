@@ -21,7 +21,7 @@ function Get-GitLabProjects {
             Write-Host -NoNewLine "Press any key to opening gitlab access token page.."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
-            Start-Process "$glHost/-/profile/personal_access_tokens"
+            Start-Process "$glHost/-/user_settings/personal_access_tokens"
         }
         else {
             Write-Host "Unexpected service response received."
@@ -51,7 +51,7 @@ function Get-GitLabGroups {
             Write-Host -NoNewLine "Press any key to opening gitlab access token page.."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
-            Start-Process "$glHost/-/profile/personal_access_tokens"
+            Start-Process "$glHost/-/user_settings/personal_access_tokens"
         }
         else {
             Write-Host "Unexpected service response received."
@@ -125,7 +125,7 @@ while ($true) {
         Set-Location -Path "./$projectPath" 
 
         $remoteBranches = git branch -r
-        
+
         $branchCheckedOut = $false
         foreach ($branch in $branchList) {
             if ($remoteBranches -match "origin/$branch") {
